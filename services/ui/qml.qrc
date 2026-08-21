@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/Main.qml</file>
+        <file>qml/Reticle.qml</file>
+        <file>qml/DwellRing.qml</file>
+        <file>qml/Tile.qml</file>
+        <file>qml/ProjectedKeyboard.qml</file>
+    </qresource>
+</RCC>

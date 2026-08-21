@@ -1,0 +1,2 @@
+# Logging configuration (reference). Services log to stderr -> journald under systemd.
+level: info                 # debug | info | warning | error

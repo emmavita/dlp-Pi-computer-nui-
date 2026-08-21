@@ -1,0 +1,20 @@
+# Gesture thresholds — PLACEHOLDERS ("à calibrer"), NOT validated values.
+# Reference/target config. The engine currently uses the compiled defaults in
+# services/engine/include/engine/*.hpp; wiring YAML loading is a target task.
+# Real values require on-target recordings (tools/calibration/calibrate_pinch.py
+# for pinch; timed recordings for the temporal thresholds).
+contact:
+  pinch_on_ratio: 0.35      # à calibrer
+  pinch_off_ratio: 0.45     # à calibrer (hysteresis, > on)
+  shadow_conf_min: 0.60     # à calibrer
+fsm:
+  t_dwell_s: 0.80           # à calibrer
+  t_long_s: 0.60            # à calibrer
+  tap_max_s: 0.30           # à calibrer
+  tap_move: 0.03            # surface units (0..1) — à calibrer
+  drag_eps: 0.04            # à calibrer
+  dwell_move: 0.02          # à calibrer
+  swipe_speed: 1.50         # surface units/s — à calibrer
+one_euro:
+  min_cutoff: 1.0           # à calibrer
+  beta: 0.007               # à calibrer

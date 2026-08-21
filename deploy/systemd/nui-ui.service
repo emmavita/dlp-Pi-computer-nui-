@@ -1,0 +1,37 @@
+[Unit]
+Description=NUI ui (Qt6 Quick fullscreen Wayland client)
+After=nui-engine.service
+Wants=nui-engine.service
+# CAVEAT: a Wayland client needs a running compositor session (labwc on the
+# target). Running it as a system service requires the session's runtime dir and
+# Wayland socket below; adjust the uid/display to the target session. A robust
+# kiosk alternative is to launch it under a dedicated compositor (e.g. cage) —
+# verify availability on the target.
+
+[Service]
+Type=simple
+User=nui
+Group=nui
+SupplementaryGroups=video render input
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=WAYLAND_DISPLAY=wayland-0
+Environment=QT_QPA_PLATFORM=wayland
+Environment=NUI_UI_SOCK=/run/nui/ui.sock
+ExecStart=/opt/nui/bin/nui-ui
+Restart=on-failure
+RestartSec=2
+
+# --- Hardening: ui needs the GPU (/dev/dri); devices NOT private, and no
+# MemoryDenyWriteExecute (would break the QML JIT / GPU driver mappings). ---
+PrivateDevices=no
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+RestrictAddressFamilies=AF_UNIX
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+ReadWritePaths=/run/nui
+
+[Install]
+WantedBy=graphical.target

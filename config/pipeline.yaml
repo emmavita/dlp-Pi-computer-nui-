@@ -1,0 +1,12 @@
+# Vision pipeline config — PLACEHOLDERS. Consumed by the on-target perception
+# wiring (not yet implemented; the .so blockers must be resolved first).
+camera:
+  width: 1280               # capture width over the projected-surface ROI — à régler
+  height: 720               # à régler
+  fps_cap: 30               # cap to the NUI need to reduce CPU/PCIe load (O4)
+models:
+  palm_hef: models/palm_detection_lite_h10.hef      # place on target
+  hand_hef: models/hand_landmark_lite_h10.hef       # place on target
+tracking_gate:
+  presence_min: 0.5         # à calibrer
+  redetect_interval: 0      # 0 = never force re-detect

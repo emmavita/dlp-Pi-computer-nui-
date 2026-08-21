@@ -1,0 +1,8 @@
+[Unit]
+Description=NUI computer (VARIANT A: direct services)
+Wants=nui-engine.service nui-perception.service nui-ui.service
+After=nui-engine.service
+# Enable this target (and the three services) OR nui-supervisor, never both.
+
+[Install]
+WantedBy=multi-user.target

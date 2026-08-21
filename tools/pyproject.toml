@@ -1,0 +1,17 @@
+[project]
+name = "nui-tools"
+version = "0.1.0"
+description = "Offline tooling for the NUI computer: calibration (OpenCV) and proto mirror/tests. Not on the runtime hot path."
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "opencv-python",
+    # picamera2 is target-only (installed system-wide on Raspberry Pi OS); it is
+    # intentionally NOT listed here so the tools install on a dev host.
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

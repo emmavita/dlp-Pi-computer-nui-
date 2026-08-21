@@ -1,0 +1,29 @@
+# Build artifacts
+/build/
+**/build/
+*.o
+*.a
+*.so
+# Rust
+/supervisor/target/
+Cargo.lock  # kept intentionally for the binary; remove this line if undesired
+# Python
+__pycache__/
+*.pyc
+.venv/
+# AI models (large, target-specific, non-source — never commit .hef)
+/models/*.hef
+/models/*.rpk
+# Runtime directories (contents ignored, directory kept via .gitkeep)
+/logs/*
+!/logs/.gitkeep
+/cache/*
+!/cache/.gitkeep
+/data/*
+!/data/.gitkeep
+# Generated calibration (produced on target)
+/config/calibration.matrix
+/config/model_checksums.txt
+# Editor/OS
+.DS_Store
+*.swp

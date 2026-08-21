@@ -1,0 +1,25 @@
+[Unit]
+Description=NUI supervisor (VARIANT B: single service managing the three processes)
+After=network.target
+# EXCLUSIVE with the direct-service variant. Enable ONLY ONE of the two variants.
+Conflicts=nui-engine.service nui-perception.service nui-ui.service
+
+[Service]
+Type=simple
+User=nui
+Group=nui
+SupplementaryGroups=video render input
+Environment=NUI_BIN_DIR=/opt/nui/bin
+Environment=NUI_PERCEPTION_SOCK=/run/nui/perception.sock
+Environment=NUI_UI_SOCK=/run/nui/ui.sock
+Environment=NUI_CALIB=/etc/nui/calibration.matrix
+ExecStart=/opt/nui/bin/nui-supervisor
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=yes
+ProtectHome=yes
+RestrictAddressFamilies=AF_UNIX
+ReadWritePaths=/run/nui
+
+[Install]
+WantedBy=multi-user.target

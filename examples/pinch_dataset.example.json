@@ -1,0 +1,8 @@
+[
+  {"ratio": 0.12, "label": "pinch"},
+  {"ratio": 0.16, "label": "pinch"},
+  {"ratio": 0.19, "label": "pinch"},
+  {"ratio": 0.70, "label": "release"},
+  {"ratio": 0.82, "label": "release"},
+  {"ratio": 0.95, "label": "release"}
+]

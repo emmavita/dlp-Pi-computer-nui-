@@ -1,0 +1,16 @@
+[package]
+name = "nui-supervisor"
+version = "0.1.0"
+edition = "2021"
+description = "Optional process supervisor for the NUI services. Restarts services on crash with exponential backoff. Production lifecycle (shutdown, cgroup kill) is delegated to systemd; this binary is collapsible."
+
+[[bin]]
+name = "nui-supervisor"
+path = "src/main.rs"
+
+# Intentionally zero external dependencies: std-only, no FFI. If this binary is
+# dropped, systemd's Restart= provides equivalent crash recovery.
+[dependencies]
+
+[profile.release]
+opt-level = "s"

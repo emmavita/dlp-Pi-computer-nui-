@@ -1,0 +1,34 @@
+[Unit]
+Description=NUI perception (capture + Hailo hand cascade + shadow contact)
+After=nui-engine.service
+Wants=nui-engine.service
+
+[Service]
+Type=simple
+User=nui
+Group=nui
+SupplementaryGroups=video render
+Environment=NUI_PERCEPTION_SOCK=/run/nui/perception.sock
+ExecStart=/opt/nui/bin/nui-perception
+Restart=on-failure
+RestartSec=1
+
+# --- Hardening: perception needs the Hailo accelerator and the camera, so
+# devices are NOT made private. Tighten with DeviceAllow once the exact node
+# names are confirmed on the target (e.g. /dev/hailo0, /dev/video*, /dev/media*,
+# /dev/dma_heap/*). Je ne sais pas the exact node names without the target. ---
+PrivateDevices=no
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_UNIX
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+ReadWritePaths=/run/nui
+
+[Install]
+WantedBy=multi-user.target
